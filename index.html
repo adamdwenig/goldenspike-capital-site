@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golden Spike Capital — AI-driven proprietary futures trading</title>
+<meta name="description" content="Golden Spike Capital is an AI-powered algorithmic trading firm operating in the futures markets with proprietary capital.">
+<meta property="og:title" content="Golden Spike Capital — AI-driven proprietary futures trading">
+<meta property="og:description" content="AI-powered algorithmic trading in the futures markets. Proprietary models, proprietary capital.">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0A192E;
+    --navy-panel: #0F2139;
+    --gold: #A08050;
+    --gold-highlight: #E0D0A0;
+    --gold-muted: #908050;
+    --gold-warm: #C8B888;
+    --text-primary: #F2F0EB;
+    --text-secondary: #8A9BB4;
+    --text-body-panel: #B8C4D4;
+    --text-faint: #5A6B84;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--navy);
+    font-family: 'Montserrat', 'Helvetica Neue', sans-serif;
+    color: var(--text-primary);
+  }
+
+  a {
+    color: var(--gold-highlight);
+    text-decoration: none;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  a:hover { color: var(--text-primary); }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  ::selection { background: var(--gold); color: var(--navy); }
+
+  @keyframes gsRise {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .hero-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .hero-header {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px clamp(24px, 5vw, 64px);
+  }
+
+  .hero-header .brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .hero-header .brand img {
+    height: 34px;
+    width: auto;
+  }
+
+  .hero-header .brand span {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    color: var(--text-primary);
+  }
+
+  .inquiries-link {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    color: var(--text-secondary);
+    border: 1px solid rgba(160, 128, 80, 0.4);
+    padding: 10px 20px;
+  }
+  .inquiries-link:hover {
+    color: var(--gold-highlight);
+    border-color: var(--gold);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 24px 96px;
+  }
+
+  .hero-content .monogram {
+    height: clamp(110px, 16vw, 170px);
+    width: auto;
+    animation: gsRise 0.9s ease-out both;
+  }
+
+  .hero-content h1 {
+    margin: 44px 0 0;
+    font-size: clamp(30px, 5.4vw, 58px);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    line-height: 1.15;
+    animation: gsRise 0.9s ease-out 0.15s both;
+    background: linear-gradient(100deg, #A08050 0%, #E0D0A0 45%, #A08050 80%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #C0A070;
+  }
+
+  .capital-row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 14px;
+    animation: gsRise 0.9s ease-out 0.25s both;
+  }
+
+  .capital-row .hairline {
+    display: block;
+    width: clamp(40px, 8vw, 90px);
+    height: 1px;
+    background: var(--gold-muted);
+  }
+
+  .capital-row span.capital-text {
+    font-size: clamp(14px, 2vw, 20px);
+    font-weight: 500;
+    letter-spacing: 0.52em;
+    text-indent: 0.52em;
+    color: var(--gold-warm);
+  }
+
+  .tagline {
+    margin: 56px 0 0;
+    font-size: clamp(16px, 2.2vw, 22px);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--text-primary);
+    animation: gsRise 0.9s ease-out 0.4s both;
+  }
+
+  .subtagline {
+    margin: 14px 0 0;
+    font-size: clamp(13px, 1.6vw, 15px);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    color: var(--text-secondary);
+    animation: gsRise 0.9s ease-out 0.5s both;
+  }
+
+  .hero-bottom-edge {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(160, 128, 80, 0.5), transparent);
+    z-index: 2;
+  }
+
+  /* WHAT WE DO */
+  .what-we-do {
+    padding: clamp(80px, 12vw, 140px) clamp(24px, 5vw, 64px);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .eyebrow {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+  }
+
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: clamp(32px, 5vw, 64px);
+    margin-top: 56px;
+  }
+
+  .pillar {
+    border-top: 1px solid rgba(160, 128, 80, 0.45);
+    padding-top: 28px;
+  }
+
+  .pillar .num {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: var(--gold-muted);
+  }
+
+  .pillar h2 {
+    margin: 18px 0 0;
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--text-primary);
+  }
+
+  .pillar p {
+    margin: 16px 0 0;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    text-wrap: pretty;
+  }
+
+  /* APPROACH */
+  .approach {
+    background: var(--navy-panel);
+    border-top: 1px solid rgba(160, 128, 80, 0.25);
+    border-bottom: 1px solid rgba(160, 128, 80, 0.25);
+  }
+
+  .approach-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: clamp(72px, 10vw, 120px) clamp(24px, 5vw, 64px);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: clamp(40px, 6vw, 80px);
+    align-items: start;
+  }
+
+  .approach-heading h2 {
+    margin: 24px 0 0;
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    line-height: 1.4;
+    color: var(--text-primary);
+    text-wrap: pretty;
+  }
+
+  .tenets {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .tenet {
+    display: flex;
+    gap: 20px;
+    align-items: baseline;
+  }
+
+  .tenet .dash {
+    flex: none;
+    width: 28px;
+    height: 1px;
+    background: var(--gold);
+    transform: translateY(-4px);
+  }
+
+  .tenet p {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--text-body-panel);
+    text-wrap: pretty;
+  }
+
+  .tenet p strong {
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: 0.04em;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: clamp(72px, 10vw, 110px) clamp(24px, 5vw, 64px) 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  footer .monogram {
+    height: 44px;
+    width: auto;
+    opacity: 0.9;
+  }
+
+  footer .eyebrow {
+    margin: 36px 0 0;
+  }
+
+  .contact-line {
+    margin: 16px 0 0;
+  }
+
+  .contact-line a {
+    font-size: clamp(16px, 2.4vw, 21px);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--text-primary);
+    border-bottom: 1px solid rgba(160, 128, 80, 0.5);
+    padding-bottom: 4px;
+  }
+  .contact-line a:hover {
+    color: var(--gold-highlight);
+    border-bottom-color: var(--gold-highlight);
+  }
+
+  .footer-bottom {
+    margin-top: 72px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(160, 128, 80, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-bottom .copyright {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+  }
+
+  .footer-bottom .disclaimer {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-faint);
+    text-wrap: pretty;
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <canvas class="hero-canvas" id="signal-canvas"></canvas>
+
+  <header class="hero-header">
+    <div class="brand">
+      <img src="assets/gs-monogram.png" alt="Golden Spike Capital monogram">
+      <span>GOLDEN SPIKE CAPITAL</span>
+    </div>
+    <a class="inquiries-link" href="mailto:info@goldenspikecapital.io">INQUIRIES</a>
+  </header>
+
+  <div class="hero-content">
+    <img class="monogram" src="assets/gs-monogram.png" alt="">
+    <h1>GOLDEN SPIKE</h1>
+    <div class="capital-row">
+      <span class="hairline"></span>
+      <span class="capital-text">CAPITAL</span>
+      <span class="hairline"></span>
+    </div>
+    <p class="tagline">AI-driven proprietary trading in the futures markets.</p>
+    <p class="subtagline">Proprietary models. Proprietary capital. Nothing else.</p>
+  </div>
+
+  <div class="hero-bottom-edge"></div>
+</section>
+
+<section class="what-we-do">
+  <p class="eyebrow">WHAT WE DO</p>
+  <div class="pillars">
+    <div class="pillar">
+      <p class="num">01</p>
+      <h2>AI &amp; ALGORITHMIC MODELS</h2>
+      <p>Proprietary machine-learning models built, tested, and refined in-house. Every decision the firm makes in the market is systematic.</p>
+    </div>
+    <div class="pillar">
+      <p class="num">02</p>
+      <h2>FUTURES MARKETS</h2>
+      <p>A deliberate focus on listed futures — deep, liquid, centrally cleared markets where execution is precise and exposure is transparent.</p>
+    </div>
+    <div class="pillar">
+      <p class="num">03</p>
+      <h2>PROPRIETARY CAPITAL</h2>
+      <p>The firm trades proprietary trading firm capital exclusively, under a risk framework that governs every position. Discipline is structural, not aspirational.</p>
+    </div>
+  </div>
+</section>
+
+<section class="approach">
+  <div class="approach-inner">
+    <div class="approach-heading">
+      <p class="eyebrow">APPROACH</p>
+      <h2>Systematic by design. Disciplined by construction.</h2>
+    </div>
+    <div class="tenets">
+      <div class="tenet">
+        <span class="dash"></span>
+        <p><strong>Systematic.</strong> Models generate, size, and manage positions. Human judgment shapes the research; it does not override the system.</p>
+      </div>
+      <div class="tenet">
+        <span class="dash"></span>
+        <p><strong>Research-driven.</strong> Ideas earn capital through rigorous testing. What cannot be validated is not traded.</p>
+      </div>
+      <div class="tenet">
+        <span class="dash"></span>
+        <p><strong>Risk-first.</strong> Exposure limits, drawdown controls, and continuous monitoring precede every strategy. Preservation of capital is the first mandate.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <img class="monogram" src="assets/gs-monogram.png" alt="">
+  <p class="eyebrow">INQUIRIES</p>
+  <p class="contact-line"><a href="mailto:info@goldenspikecapital.io">info@goldenspikecapital.io</a></p>
+  <div class="footer-bottom">
+    <p class="copyright">© 2026 GOLDEN SPIKE CAPITAL</p>
+    <p class="disclaimer">Golden Spike Capital trades proprietary capital and does not offer investment products or advisory services to the public.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var canvas = document.getElementById('signal-canvas');
+  if (!canvas) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var ctx = canvas.getContext('2d');
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var W, H;
+
+  function resize() {
+    W = canvas.clientWidth;
+    H = canvas.clientHeight;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  var N = 260;
+  var pts = [];
+  var v = 0;
+  for (var i = 0; i < N; i++) {
+    v += (Math.random() - 0.487) * 6;
+    v *= 0.985;
+    pts.push(v);
+  }
+
+  var t = 0;
+  var raf;
+
+  function draw() {
+    t += 0.12;
+    if (t >= 1) {
+      t = 0;
+      pts.shift();
+      var nv = pts[pts.length - 1] + (Math.random() - 0.487) * 6;
+      nv *= 0.985;
+      pts.push(nv);
+    }
+
+    ctx.clearRect(0, 0, W, H);
+    var base = H * 0.72;
+    var step = W / (N - 3);
+
+    ctx.beginPath();
+    for (var i = 0; i < N - 1; i++) {
+      var x = (i - t) * step;
+      var y = base - pts[i] * (H / 320);
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+
+    var grad = ctx.createLinearGradient(0, 0, W, 0);
+    grad.addColorStop(0, 'rgba(160,128,80,0)');
+    grad.addColorStop(0.5, 'rgba(160,128,80,0.55)');
+    grad.addColorStop(0.85, 'rgba(224,208,160,0.75)');
+    grad.addColorStop(1, 'rgba(224,208,160,0)');
+
+    ctx.strokeStyle = grad;
+    ctx.lineWidth = 1.2;
+    ctx.stroke();
+
+    raf = requestAnimationFrame(draw);
+  }
+  raf = requestAnimationFrame(draw);
+})();
+</script>
+
+</body>
+</html>
